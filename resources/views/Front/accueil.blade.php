@@ -10,9 +10,9 @@
                     <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
 
                         <div class="col-md-12 ftco-animate text-center">
-                            <h1 class="mb-2">We serve Fresh Vegestables &amp; Fruits</h1>
+                            <h1 class="mb-2">Accompagnement de la production à la vente</h1>
                             <h2 class="subheading mb-4">We deliver organic vegetables &amp; fruits</h2>
-                            <p><a href="#" class="btn btn-primary">View Details</a></p>
+                            <p><a href="#" class="btn btn-primary">Plus de Details</a></p>
                         </div>
 
                     </div>
@@ -25,9 +25,24 @@
                     <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
 
                         <div class="col-sm-12 ftco-animate text-center">
-                            <h1 class="mb-2">100% Fresh &amp; Organic Foods</h1>
-                            <h2 class="subheading mb-4">We deliver organic vegetables &amp; fruits</h2>
-                            <p><a href="#" class="btn btn-primary">View Details</a></p>
+                            <h1 class="mb-2">Produits 100% bio &amp; conventionnels </h1>
+                            {{-- <h2 class="subheading mb-4">We deliver organic vegetables &amp; fruits</h2> --}}
+                            <p><a href="#" class="btn btn-primary">Plus de Details</a></p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="slider-item" style="background-image: url(Templates/front/images/bg_2.jpg);">
+                <div class="overlay"></div>
+                <div class="container">
+                    <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
+
+                        <div class="col-sm-12 ftco-animate text-center">
+                            <h1 class="mb-2">MarketPlace pour Vos Offres</h1>
+                            <h2 class="subheading mb-4">Offre de Vente &amp; d'Achat</h2>
+                            <p><a href="#" class="btn btn-primary">Plus de Details</a></p>
                         </div>
 
                     </div>
@@ -45,8 +60,8 @@
                             <span class="flaticon-shipped"></span>
                         </div>
                         <div class="media-body">
-                            <h3 class="heading">Free Shipping</h3>
-                            <span>On order over $100</span>
+                            <h3 class="heading">Livraison Via Nos Partenaires</h3>
+                            <span>Prix Abordable</span>
                         </div>
                     </div>
                 </div>
@@ -56,8 +71,8 @@
                             <span class="flaticon-diet"></span>
                         </div>
                         <div class="media-body">
-                            <h3 class="heading">Always Fresh</h3>
-                            <span>Product well package</span>
+                            <h3 class="heading">Produits Frais</h3>
+                            <span>Produits Suivis et Emtreposés de manière Optimale</span>
                         </div>
                     </div>
                 </div>
@@ -67,8 +82,8 @@
                             <span class="flaticon-award"></span>
                         </div>
                         <div class="media-body">
-                            <h3 class="heading">Superior Quality</h3>
-                            <span>Quality Products</span>
+                            <h3 class="heading">Qualité Supérieure</h3>
+                            <span>Que des Produits de Qualité Sélectionnés par nos Soins</span>
                         </div>
                     </div>
                 </div>
@@ -78,8 +93,8 @@
                             <span class="flaticon-customer-service"></span>
                         </div>
                         <div class="media-body">
-                            <h3 class="heading">Support</h3>
-                            <span>24/7 Support</span>
+                            <h3 class="heading">Assistance</h3>
+                            <span>24h/24 7jours/7</span>
                         </div>
                     </div>
                 </div>
@@ -96,9 +111,9 @@
                             <div class="category-wrap-2 ftco-animate img align-self-stretch d-flex"
                                 style="background-image: url(Templates/front/images/category.jpg);">
                                 <div class="text text-center">
-                                    <h2>Vegetables</h2>
-                                    <p>Protect the health of every home</p>
-                                    <p><a href="#" class="btn btn-primary">Shop now</a></p>
+                                    <h2>Produits Bio &amp; Conventionnels</h2>
+                                    <p>Nous préservons votre Santé de part la qualté de nos Produits</p>
+                                    <p><a href="#" class="btn btn-primary">Commander</a></p>
                                 </div>
                             </div>
                         </div>
@@ -141,9 +156,9 @@
         <div class="container">
             <div class="row justify-content-center mb-3 pb-3">
                 <div class="col-md-12 heading-section text-center ftco-animate">
-                    <span class="subheading">Featured Products</span>
-                    <h2 class="mb-4">Our Products</h2>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+                    <span class="subheading">Produits en Vente</span>
+                    <h2 class="mb-4">Nos Dernières Offres</h2>
+                    <p>Nous faisons le nécessaire avoir le meilleur apport Qualité/Prix</p>
                 </div>
             </div>
         </div>
@@ -151,8 +166,8 @@
             <div class="row">
                 <div class="col-md-6 col-lg-3 ftco-animate">
                     <div class="product">
-                        <a href="#" class="img-prod"><img class="img-fluid" src="Templates/front/images/product-1.jpg"
-                                alt="Colorlib Template">
+                        <a href="#" class="img-prod"><img class="img-fluid"
+                                src="Templates/front/images/product-1.jpg" alt="Colorlib Template">
                             <span class="status">30%</span>
                             <div class="overlay"></div>
                         </a>
@@ -407,7 +422,7 @@
         </div>
     </section>
 
-    <section class="ftco-section img" style="background-image: url(Templates/front/images/bg_3.jpg);">
+    {{-- <section class="ftco-section img" style="background-image: url(Templates/front/images/bg_3.jpg);">
         <div class="container">
             <div class="row justify-content-end">
                 <div class="col-md-6 heading-section ftco-animate deal-of-the-day ftco-animate">
@@ -425,16 +440,17 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <section class="ftco-section testimony-section">
         <div class="container">
             <div class="row justify-content-center mb-5 pb-3">
                 <div class="col-md-7 heading-section ftco-animate text-center">
-                    <span class="subheading">Testimony</span>
+                    <span class="subheading">Témoignages</span>
                     <h2 class="mb-4">Our satisfied customer says</h2>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
-                        live the blind texts. Separated they live in</p>
+                    <p>Nous faisons l'Accompagnement dans la production de la majeure partie des produits disponibles sur la
+                        plateforme et la Sélection des offres de vente est faite avec Soin. Ceux ci-dessous en témoignent
+                    </p>
                 </div>
             </div>
             <div class="row ftco-animate">
@@ -559,14 +575,14 @@
         <div class="container py-4">
             <div class="row d-flex justify-content-center py-5">
                 <div class="col-md-6">
-                    <h2 style="font-size: 22px;" class="mb-0">Subcribe to our Newsletter</h2>
-                    <span>Get e-mail updates about our latest shops and special offers</span>
+                    <h2 style="font-size: 22px;" class="mb-0">Souscrire à notre Newsletter</h2>
+                    <span>Vous recevrez des emails sur nos derniers Projets et Offres</span>
                 </div>
                 <div class="col-md-6 d-flex align-items-center">
                     <form action="#" class="subscribe-form">
                         <div class="form-group d-flex">
-                            <input type="text" class="form-control" placeholder="Enter email address">
-                            <input type="submit" value="Subscribe" class="submit px-3">
+                            <input type="text" class="form-control" placeholder="Entrer votre email">
+                            <input type="submit" value="Souscrire" class="submit px-3">
                         </div>
                     </form>
                 </div>
