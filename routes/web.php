@@ -33,23 +33,83 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // <////////////////////////////////////////////////////////////////////////////////////////////////////>
 
-
 Route::group(["namespace" => "App\Http\Controllers\BackOffice"], function () {
 
-    Route::match(['get', 'post'], "/dashboard", [
-        "as" => "dashboard",
-        "uses" => "AdminController@dashboard"
+    // Route detail Offre
+    Route::match(['get', 'post'], "/details/{id?}", [
+        "as" => "details-offre",
+        "uses" => "OffreController@details"
     ]);
 
-    Route::match(['get', 'post'], "/ajouterPro", [
-        "as" => "ajout-producteur",
-        "uses" => "ProducteurController@ajouterPro"
+    Route::match(['get', 'post'], "AddAdmin", [
+        "as" => "add-admin",
+        "uses" => "AdminController@AddAdmin"
+    ]);
+
+    // route page register vendeur
+    Route::match(['get', 'post'], "AddUser", [
+        "as" => "add-user",
+        "uses" => "AdminController@AddUser"
+    ]);
+
+
+    // Partie Offre
+    Route::match(['get', 'post'], "/AfficherOffre", [
+        "as" => "list-offre",
+        "uses" => "OffreController@AfficherOffre"
     ]);
 });
 
+// Groupe mmiddleware pour empêcher accès aux pages sans se connecter
+Route::middleware(['auth'])->group(function () {
+
+    Route::group(["namespace" => "App\Http\Controllers\BackOffice"], function () {
+
+        Route::match(['get', 'post'], "/dashboard", [
+            "as" => "dashboard",
+            "uses" => "AdminController@dashboard"
+        ]);
+
+        Route::match(['get', 'post'], "/ajouterPro", [
+            "as" => "ajout-producteur",
+            "uses" => "ProducteurController@ajouterPro"
+        ]);
+        Route::match(['get', 'post'], "AddPro", [
+            "as" => "add-producteur",
+            "uses" => "ProducteurController@AddPro"
+        ]);
+        Route::match(['get', 'post'], "ListePro", [
+            "as" => "list-producteur",
+            "uses" => "ProducteurController@ListePro"
+        ]);
+
+        Route::match(['get', 'post'], "AddOffre", [
+            "as" => "add-offre",
+            "uses" => "OffreController@AddOffre"
+        ]);
+        Route::match(['get', 'post'], "/AjouterOffre", [
+            "as" => "ajouter-offre",
+            "uses" => "OffreController@AjouterOffre"
+        ]);
+    });
+});
 
 //  <///////////////////////////////////////////////////////////////////////////////////////////////////
 
 //                                           ROUTE DU FrontOffice
 
 // <////////////////////////////////////////////////////////////////////////////////////////////////////>
+
+Route::group(["namespace" => "App\Http\Controllers\FrontOffice"], function () {
+
+    Route::match(['get', 'post'], "/RegisterVendeur", [
+        "as" => "add-vendeur",
+        "uses" => "VendeurController@RegisterVendeur"
+    ]);
+
+    // route page register vendeur
+    Route::match(['get', 'post'], "AddUser", [
+        "as" => "add-user",
+        "uses" => "VendeurController@AddUser"
+    ]);
+});

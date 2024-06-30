@@ -23,7 +23,7 @@
     <!-- Layout styles -->
     <link rel="stylesheet" href="{{ asset('Templates/back/assets/css/style.css') }}">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="{{ asset('Templates/back/assets/images/favicon.png') }}" />
+    <link rel="shortcut icon" href="{{ asset('Templates/back/assets/images/logo_mldaw.jpg') }}" />
 </head>
 
 <body>
@@ -53,22 +53,29 @@
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
                 <a class="sidebar-brand brand-logo" href="{{ url('/dashboard') }}"><img
-                        src="{{ asset('Templates/back/assets/images/logo.svg') }}" alt="logo" /></a>
+                        src="{{ asset('Templates/back/assets/images/logo_mldaw.jpg') }}" alt="logo"
+                        style="width: 25%; height: 50%;" /></a>
                 <a class="sidebar-brand brand-logo-mini" href="{{ url('/dashboard') }}"><img
-                        src="{{ asset('Templates/back/assets/images/logo-mini.svg') }}" alt="logo" /></a>
+                        src="{{ asset('Templates/back/assets/images/logo_mldaw.jpg') }}" alt="logo"
+                        style="width: 25%; height: 50%;" /></a>
             </div>
             <ul class="nav">
                 <li class="nav-item profile">
                     <div class="profile-desc">
                         <div class="profile-pic">
                             <div class="count-indicator">
-                                <img class="img-xs rounded-circle "
-                                    src="{{ asset('Templates/back/assets/images/faces/face15.jpg') }}" alt="">
+                                @if (Auth::user()->photo)
+                                    <img class="img-xs rounded-circle "
+                                        src="/storage/photo_profils/{{ Auth::user()->photo }}" alt="">
+                                @else
+                                    <img class="img-xs rounded-circle " src="/storage/photo_profils/noimage.jpg"
+                                        alt="">
+                                @endif
                                 <span class="count bg-success"></span>
                             </div>
                             <div class="profile-name">
-                                <h5 class="mb-0 font-weight-normal">User</h5>
-                                <span>Gold Member</span>
+                                <h5 class="mb-0 font-weight-normal">{{ Auth::user()->Nom }}</h5>
+                                <span>{{ Auth::user()->role }}</span>
                             </div>
                         </div>
                         <a href="#" id="profile-dropdown" data-bs-toggle="dropdown"><i
@@ -102,64 +109,104 @@
                 <li class="nav-item nav-category">
                     <span class="nav-link">Accueil</span>
                 </li>
-                <li class="nav-item menu-items">
-                    <a class="nav-link" href="{{ url('/dashboard') }}">
-                        <span class="menu-icon">
-                            <i class="mdi mdi-speedometer"></i>
-                        </span>
-                        <span class="menu-title">Tableau de bord</span>
-                    </a>
-                </li>
-                <li class="nav-item nav-category">
-                    <span class="nav-link">Gestion</span>
-                </li>
-                <li class="nav-item menu-items">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
-                        aria-controls="ui-basic">
-                        <span class="menu-icon">
-                            <i class="mdi mdi-laptop"></i>
-                        </span>
-                        <span class="menu-title">Utilisateurs</span>
-                        <i class="menu-arrow"></i>
-                    </a>
-                    <div class="collapse" id="ui-basic">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="#">Liste
-                                    Utilisateurs</a>
-                            </li>
-                            <li class="nav-item"> <a class="nav-link" href="#">Ajout
-                                    Admin</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item menu-items">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#proui-basic" aria-expanded="false"
-                        aria-controls="ui-basic">
-                        <span class="menu-icon">
-                            <i class="mdi mdi-laptop"></i>
-                        </span>
-                        <span class="menu-title">Producteurs</span>
-                        <i class="menu-arrow"></i>
-                    </a>
-                    <div class="collapse" id="proui-basic">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="#">Liste
-                                    Producteurs</a>
-                            </li>
-                            <li class="nav-item"> <a class="nav-link" href="{{ url('/ajouterPro') }}">Ajouter
-                                    Producteur</a></li>
-                        </ul>
-                    </div>
-                </li>
+                @if (Auth::user()->role == 'Admin')
+                    <li class="nav-item menu-items">
+                        <a class="nav-link" href="{{ url('/dashboard') }}">
+                            <span class="menu-icon">
+                                <i class="mdi mdi-speedometer"></i>
+                            </span>
+                            <span class="menu-title">Tableau de bord</span>
+                        </a>
+                    </li>
+                    <li class="nav-item nav-category">
+                        <span class="nav-link">Gestion</span>
+                    </li>
+                    <li class="nav-item menu-items">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
+                            aria-controls="ui-basic">
+                            <span class="menu-icon">
+                                <i class="fa fa-users"></i>
+                            </span>
+                            <span class="menu-title">Utilisateurs</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="ui-basic">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="#">Liste
+                                        Utilisateurs</a>
+                                </li>
+                                <li class="nav-item"> <a class="nav-link" href="#">Ajout
+                                        Admin</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item menu-items">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#proui-basic" aria-expanded="false"
+                            aria-controls="ui-basic">
+                            <span class="menu-icon">
+                                <i class="fa fa-group"></i>
+                            </span>
+                            <span class="menu-title">Producteurs</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="proui-basic">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="{{ url('/ListePro') }}">Liste
+                                        Producteurs</a>
+                                </li>
+                                <li class="nav-item"> <a class="nav-link" href="{{ url('/ajouterPro') }}">Ajouter
+                                        Producteur</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item menu-items">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#offreui-basic" aria-expanded="false"
+                            aria-controls="ui-basic">
+                            <span class="menu-icon">
+                                <i class="mdi mdi-laptop"></i>
+                            </span>
+                            <span class="menu-title">Offres</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="offreui-basic">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="#">Mes Offres</a>
+                                </li>
+                                <li class="nav-item"> <a class="nav-link" href="{{ url('/AjouterOffre') }}">Ajouter
+                                        Offre</a></li>
+                            </ul>
+                        </div>
+                    </li>
 
-                <li class="nav-item menu-items">
-                    <a class="nav-link" href="#">
-                        <span class="menu-icon">
-                            <i class="mdi mdi-file-document"></i>
-                        </span>
-                        <span class="menu-title">Documentation</span>
-                    </a>
-                </li>
+                    <li class="nav-item menu-items">
+                        <a class="nav-link" href="#">
+                            <span class="menu-icon">
+                                <i class="mdi mdi-file-document"></i>
+                            </span>
+                            <span class="menu-title">Documentation</span>
+                        </a>
+                    </li>
+                @else
+                    <li class="nav-item menu-items">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#offreui-basic" aria-expanded="false"
+                            aria-controls="ui-basic">
+                            <span class="menu-icon">
+                                <i class="mdi mdi-laptop"></i>
+                            </span>
+                            <span class="menu-title">Offres</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="offreui-basic">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="#">Mes Offres</a>
+                                </li>
+                                <li class="nav-item"> <a class="nav-link" href="{{ url('/AjouterOffre') }}">Ajouter
+                                        Offre</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                @endif
+
             </ul>
         </nav>
         <!-- partial -->
@@ -168,7 +215,8 @@
             <nav class="navbar p-0 fixed-top d-flex flex-row">
                 <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
                     <a class="navbar-brand brand-logo-mini" href="{{ url('/dashboard') }}"><img
-                            src="{{ asset('Templates/back/assets/images/logo-mini.svg') }}" alt="logo" /></a>
+                            src="{{ asset('Templates/back/assets/images/logo_mldaw.jpg') }}" alt="logo"
+                            style="width: 100%; height: 100%;" /></a>
                 </div>
                 <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
                     <button class="navbar-toggler navbar-toggler align-self-center" type="button"
@@ -330,9 +378,13 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown">
                                 <div class="navbar-profile">
-                                    <img class="img-xs rounded-circle"
-                                        src="Templates/back/assets/images/faces/face15.jpg" alt="">
-                                    <p class="mb-0 d-none d-sm-block navbar-profile-name">User</p>
+                                    @if (Auth::user()->photo)
+                                        <img class="img-xs rounded-circle "
+                                            src="/storage/photo_profils/{{ Auth::user()->photo }}" alt="">
+                                    @else
+                                        <img class="img-xs rounded-circle " src="/storage/photo_profils/noimage.jpg"
+                                            alt="">
+                                    @endif
                                     <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                                 </div>
                             </a>

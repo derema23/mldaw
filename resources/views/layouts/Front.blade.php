@@ -6,6 +6,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <link rel="shortcut icon" href="{{ asset('Templates/back/assets/images/logo_mldaw.jpg') }}" />
+
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap"
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
@@ -46,7 +48,7 @@
 
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a href="index.html" class="nav-link">Accueil</a></li>
+                    <li class="nav-item active"><a href="{{ url('/') }}" class="nav-link">Accueil</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">Asitsala</a>
@@ -57,9 +59,16 @@
                             <a class="dropdown-item" href="#">Checkout</a>
                         </div>
                     </li>
-                    <li class="nav-item"><a href="about.html" class="nav-link">Nos Offres</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown0ffre" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">Offres</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown0ffre">
+                            <a class="dropdown-item" href="{{ url('/AfficherOffre') }}">Liste Offres</a>
+                            <a class="dropdown-item" href="{{ url('/AjouterOffre') }}">Ajouter Offre de vente</a>
+                        </div>
+                    </li>
                     <li class="nav-item"><a href="#" class="nav-link">A propos</a></li>
-                    <li class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span
+                    <li class="nav-item cta cta-colored"><a href="#" class="nav-link"><span
                                 class="icon-shopping_cart"></span>[0]</a></li>
                     <li class="nav-item"><a href="{{ '/login' }}" class="nav-link"><span
                                 id="btn-login">Connexion</span></a>

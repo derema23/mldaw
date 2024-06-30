@@ -1,23 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\BackOffice;
+namespace App\Http\Controllers\FrontOffice;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Str;
 
-class AdminController extends Controller
+class VendeurController extends Controller
 {
 
-    public function dashboard()
+    public function RegisterVendeur()
     {
-        return view('Back.dashboard');
+        return view('auth.RegisterUser');
     }
 
-    public function AddAdmin(Request $request)
+    public function AddUser(Request $request)
     {
-
         $this->validate($request, [
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
@@ -31,13 +30,13 @@ class AdminController extends Controller
         // bcrypt pour crypter le mot de passe en base & Hash() pr le decrypter
         $user->password = bcrypt($request->input('password'));
         $user->status = 1;
-        $user->role = 'Admin';
+        $user->role = 'Vendeur';
 
         $user->remember_token = Str::random(10);
 
 
         $user->save();
 
-        return redirect('/register')->with('status', 'Compte Administrateur ajouté avec succès !');
+        return redirect('/RegisterVendeur')->with('status', 'Compte Vendeur créé avec succès !!');
     }
 }

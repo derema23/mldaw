@@ -35,7 +35,8 @@
                                 <div class="alert alert-success">
 
                                     {{ Session::get('status') }}
-
+                                    <br>
+                                    <a href="{{ url('/login') }}" class="btn btn-success">Connectez-Vous</a>
                                 </div>
                                 <br>
                             @endif
@@ -51,7 +52,7 @@
                                 </div>
                                 <br>
                             @endif
-                            <form method="POST" action="{{ url('AddAdmin') }}">
+                            <form method="POST" action="{{ url('AddUser') }}">
                                 @csrf
                                 <div class="form-group">
                                     <label>Nom</label>

@@ -46,7 +46,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Mot de passe *</label>
-                                    <input type="text"
+                                    <input type="password"
                                         class="form-control p_input @error('password') is-invalid @enderror"
                                         name="password" required autocomplete="current-password">
 
@@ -75,7 +75,8 @@
                                     <button class="btn btn-google col">
                                         <i class="mdi mdi-google-plus"></i> Google plus </button>
                                 </div> --}}
-                                <p class="sign-up">Pas encore de Compte?<a href="#"> Enregistrer-Vous</a></p>
+                                <p class="sign-up">Pas encore de Compte?<a href="{{ url('/RegisterVendeur') }}">
+                                        Enregistrer-Vous</a></p>
                             </form>
                         </div>
                     </div>
