@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('classe');
             $table->string('conditionnement');
             $table->string('origine');
-            $table->integer('unite_vente')->nullable();
+            $table->string('unite_vente')->nullable();
             $table->integer('quantite')->nullable();
             $table->integer('prix_unitaire');
             $table->string('logistique');

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\BackOffice;
 
 use App\Http\Controllers\Controller;
+use App\Mail\HelloMail;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
 
 class ProducteurController extends Controller
 {
@@ -20,6 +22,24 @@ class ProducteurController extends Controller
         $numb = str_split($request->input('telephone'));
         $comp = (int)($numb[0]);
         if ($comp == 9 or $comp == 7 or $comp == 2) {
+
+
+            // PARTIE ENVOI SMS
+            $basic  = new \Vonage\Client\Credentials\Basic("636f0064", "u5DEQtJMDoTGgRzK");
+            $client = new \Vonage\Client($basic);
+            $numberTo = $request->input('telephone');
+            $response = $client->sms()->send(
+                new \Vonage\SMS\Message\SMS("228" . $numberTo, 'M\'LYDAW', 'Votre Compte a été créé avec succès. Merci pour votre Confiance.')
+            );
+
+            //$message = $response->current();
+
+            // if ($message->getStatus() == 0) {
+            //     echo "The message was sent successfully\n";
+            // } else {
+            //     echo "The message failed with status: " . $message->getStatus() . "\n";
+            // }
+            // FIN PARTIE ENVOI SMS
 
             $this->validate($request, [
                 'email' => 'unique:users',
@@ -68,8 +88,11 @@ class ProducteurController extends Controller
 
             $user->remember_token = Str::random(10);
 
-
             $user->save();
+
+            //ENVOI EMAIL BIENVENUE
+            Mail::to($request->input('email'))
+                ->send(new HelloMail());
 
             return redirect('/ajouterPro')->with('status', 'L\'utilisateur "' . $user->nom . " " . $user->prenom . '" a été ajouté avec succès !');
         } else {

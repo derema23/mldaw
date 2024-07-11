@@ -14,13 +14,17 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+//Creer un raccourci du dossier Storage dans le dossier Public dans le Cpanel
+Route::get('/symlink', function () {
+    $targetFolder = $_SERVER['DOCUMENT_ROOT'] . '/storage/app/public';
+    $linkFolder = $_SERVER['DOCUMENT_ROOT'] . '/public/storage';
+    symlink($targetFolder, $linkFolder);
+    return 'Symlink process successfully completed';
+});
+
 Route::get('/', function () {
     return view('Front.accueil');
 });
-
-// Route::get('/dashboard', function () {
-//     return view('Back.dashboard');
-// });
 
 Auth::routes();
 
@@ -57,6 +61,11 @@ Route::group(["namespace" => "App\Http\Controllers\BackOffice"], function () {
     Route::match(['get', 'post'], "/AfficherOffre", [
         "as" => "list-offre",
         "uses" => "OffreController@AfficherOffre"
+    ]);
+
+    Route::match(['get', 'post'], "/ZapLink/{id}", [
+        "as" => "achat-whatsapp",
+        "uses" => "OffreController@AchatWhatsapp"
     ]);
 });
 
@@ -101,6 +110,12 @@ Route::middleware(['auth'])->group(function () {
 // <////////////////////////////////////////////////////////////////////////////////////////////////////>
 
 Route::group(["namespace" => "App\Http\Controllers\FrontOffice"], function () {
+
+    // route A Propos
+    Route::match(['get', 'post'], "/About", [
+        "as" => "about",
+        "uses" => "FrontController@About"
+    ]);
 
     Route::match(['get', 'post'], "/RegisterVendeur", [
         "as" => "add-vendeur",

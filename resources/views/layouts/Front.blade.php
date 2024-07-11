@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>M'LDAW - Miawoè - Asitsala</title>
+    <title>M'LYDAW - Miawoè - Asitsala</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -40,7 +40,10 @@
     </div>
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">M'LDAW</a>
+            <a class="navbar-brand" href="{{ url('/') }}"><img
+                    src="{{ asset('Templates/front/images/mldaw.jpg') }}" alt="mldaw_logo"
+                    style="width:60px; height:50px;"></a>
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
                 aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="oi oi-menu"></span> Menu
@@ -50,8 +53,8 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active"><a href="{{ url('/') }}" class="nav-link">Accueil</a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">Asitsala</a>
+                        <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">Asitsala</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown04">
                             <a class="dropdown-item" href="shop.html">MarketPlace</a>
                             <a class="dropdown-item" href="#">Wishlist</a>
@@ -60,14 +63,14 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdown0ffre" data-toggle="dropdown"
+                        <a class="nav-link dropdown-toggle" id="dropdown0ffre" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">Offres</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown0ffre">
                             <a class="dropdown-item" href="{{ url('/AfficherOffre') }}">Liste Offres</a>
                             <a class="dropdown-item" href="{{ url('/AjouterOffre') }}">Ajouter Offre de vente</a>
                         </div>
                     </li>
-                    <li class="nav-item"><a href="#" class="nav-link">A propos</a></li>
+                    <li class="nav-item"><a href="{{ url('/About') }}" class="nav-link">A propos</a></li>
                     <li class="nav-item cta cta-colored"><a href="#" class="nav-link"><span
                                 class="icon-shopping_cart"></span>[0]</a></li>
                     <li class="nav-item"><a href="{{ '/login' }}" class="nav-link"><span

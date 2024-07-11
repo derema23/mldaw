@@ -81,11 +81,16 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="unite">Unité de vente</label> <strong style="color: red; size:50px;">*</strong>
-                            <input name="unite" type="number" class="form-control" id="unite"
-                                placeholder="veillez remplir ce champ.." required disabled>
+                            <select class="form-select" id="unite" name="unite" required>
+                                <option value="Kg" selected>Kilogramme(Kg)</option>
+                                <option value="Bol">Bol</option>
+                                <option value="Panier">Panier</option>
+                            </select>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="prix">Prix unitaire</label> <strong style="color: red; size:50px;">*</strong>
+                            <label for="prix">Prix unitaire</label> <strong style="color: red; font-size:15px;">*(en F
+                                CFA)
+                            </strong>
                             <input name="prix" type="number" class="form-control" id="prix"
                                 placeholder="veillez remplir ce champ.." required>
                         </div>
@@ -93,14 +98,25 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="quantite">Quantité disponible</label> <strong
-                                style="color: red; size:50px;">*</strong>
+                                style="color: red; font-size:15px;">*(nombre d'unité de Vente)</strong>
                             <input name="quantite" type="number" class="form-control" id="quantite"
-                                placeholder="veillez remplir ce champ.." required disabled>
+                                placeholder="veillez remplir ce champ.." required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="logistique">Logistique</label> <strong style="color: red; size:50px;">*</strong>
-                            <input name="logistique" type="text" class="form-control" id="logistique"
-                                placeholder="veillez remplir ce champ.." required>
+                            <select class="form-select" id="logistique" name="logistique" required>
+                                <option value="EXW" selected>EXW</option>
+                                <option value="FCA">FCA</option>
+                                <option value="FAS">FAS</option>
+                                <option value="FOB">FOB</option>
+                                <option value="CFR">CFR</option>
+                                <option value="CIF">CIF</option>
+                                <option value="CPT">CPT</option>
+                                <option value="CIP">CIP</option>
+                                <option value="DPU">DPU</option>
+                                <option value="DAP">DAP</option>
+                                <option value="DDP">DDP</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">

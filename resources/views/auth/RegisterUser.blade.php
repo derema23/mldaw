@@ -19,7 +19,7 @@
     <!-- Layout styles -->
     <link rel="stylesheet" href="Templates/back/assets/css/style.css">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="Templates/back/assets/images/favicon.png" />
+    <link rel="shortcut icon" href="Templates/back/assets/images/logo_mldaw.jpg" />
 </head>
 
 <body>
@@ -29,7 +29,7 @@
                 <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
                     <div class="card col-lg-4 mx-auto">
                         <div class="card-body px-5 py-5">
-                            <h3 class="card-title text-start mb-3">Inscription Admin</h3>
+                            <h3 class="card-title text-start mb-3">Inscription</h3>
 
                             @if (Session::has('status'))
                                 <div class="alert alert-success">
@@ -55,25 +55,31 @@
                             <form method="POST" action="{{ url('AddUser') }}">
                                 @csrf
                                 <div class="form-group">
-                                    <label>Nom</label>
-                                    <input type="text" name="nom" class="form-control p_input">
+                                    <label>Nom *</label>
+                                    <input type="text" name="nom" class="form-control p_input" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Prénom(s)</label>
-                                    <input type="text" name="prenom" class="form-control p_input">
+                                    <label>Prénom(s) *</label>
+                                    <input type="text" name="prenom" class="form-control p_input" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Email</label>
-                                    <input type="email" name="email" class="form-control p_input">
+                                    <label>Numéro de Téléphone *</label>
+                                    <input type="number" minlength="8" maxlength="8" name="telephone"
+                                        class="form-control p_input" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Mot de Passe</label>
-                                    <input id="password" type="password" name="password" class="form-control p_input">
+                                    <label>Email *</label>
+                                    <input type="email" name="email" class="form-control p_input" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Confirmer Mot de Passe</label>
+                                    <label>Mot de Passe *</label>
+                                    <input id="password" type="password" name="password" class="form-control p_input"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Confirmer Mot de Passe *</label>
                                     <input id="password-confirm" type="password" name="password_confirmation"
-                                        class="form-control p_input">
+                                        class="form-control p_input" required>
                                 </div>
                                 {{-- <div class="form-group d-flex align-items-center justify-content-between">
                                     <div class="form-check">

@@ -19,7 +19,7 @@
     <!-- Layout styles -->
     <link rel="stylesheet" href="Templates/back/assets/css/style.css">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="Templates/back/assets/images/favicon.png" />
+    <link rel="shortcut icon" href="Templates/back/assets/images/logo_mldaw.jpg" />
 </head>
 
 <body>

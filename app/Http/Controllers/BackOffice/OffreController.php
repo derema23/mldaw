@@ -53,8 +53,8 @@ class OffreController extends Controller
         $offre->classe = $request->input('classe');
         $offre->conditionnement = $request->input('conditionnement');
         $offre->origine = $request->input('origine');
-        // $offre->unite_vente = $request->input('unite');
-        // $offre->quantite = $request->input('quantite');
+        $offre->unite_vente = $request->input('unite');
+        $offre->quantite = $request->input('quantite');
         $offre->prix_unitaire = (int)$request->input('prix');
         $offre->logistique = $request->input('logistique');
         //lier offre à user
@@ -73,5 +73,12 @@ class OffreController extends Controller
     {
         $offre = Offre::find($id);
         return view('Front.offre.singleOffre')->with('offre', $offre);
+    }
+
+    public function AchatWhatsapp($id)
+    {
+
+        $offre = Offre::find($id);
+        return view('Front.offre.WhatsappPage')->with('offre', $offre);
     }
 }
