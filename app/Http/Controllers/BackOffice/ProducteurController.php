@@ -24,7 +24,7 @@ class ProducteurController extends Controller
         if ($comp == 9 or $comp == 7 or $comp == 2) {
 
 
-            // PARTIE ENVOI SMS
+            /* PARTIE ENVOI SMS
             $basic  = new \Vonage\Client\Credentials\Basic("636f0064", "u5DEQtJMDoTGgRzK");
             $client = new \Vonage\Client($basic);
             $numberTo = $request->input('telephone');
@@ -32,14 +32,14 @@ class ProducteurController extends Controller
                 new \Vonage\SMS\Message\SMS("228" . $numberTo, 'M\'LYDAW', 'Votre Compte a été créé avec succès. Merci pour votre Confiance.')
             );
 
-            //$message = $response->current();
+            $message = $response->current();
 
-            // if ($message->getStatus() == 0) {
-            //     echo "The message was sent successfully\n";
-            // } else {
-            //     echo "The message failed with status: " . $message->getStatus() . "\n";
-            // }
-            // FIN PARTIE ENVOI SMS
+            if ($message->getStatus() == 0) {
+                echo "The message was sent successfully\n";
+            } else {
+                echo "The message failed with status: " . $message->getStatus() . "\n";
+            }
+            FIN PARTIE ENVOI SMS */
 
             $this->validate($request, [
                 'email' => 'unique:users',

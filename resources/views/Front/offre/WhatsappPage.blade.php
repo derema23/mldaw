@@ -18,26 +18,25 @@
                     <div class="pb-md-5">
                         <p><a href="https://api.whatsapp.com/send?phone=99003828&text=*VOTRE COMMANDE :*
                                                 {{-- commentaire de retour à la ligne --}}
-                                                %0DNom du Produit%20:%20{{ $offre->Nom_produit }}
+                                                %0A%0ANom du Produit%20:%20{{ $offre->Nom_produit }}
                                                 {{-- commentaire de retour à la ligne --}}
-                                                %0DPrix Unitaire%20:%20{{ number_format($offre->prix_unitaire, 0, ',', ' ') }} F CFA /
-                                {{ $offre->unite_vente }}
+                                                %0A%0APrix Unitaire%20:%20{{ number_format($offre->prix_unitaire, 0, ',', ' ') }}%20F%20CFA%20/%20{{ $offre->unite_vente }}
                                                 {{-- commentaire de retour à la ligne --}}
-                                                %0DCatégorie%20:%20{{ $offre->categorie }}
+                                                %0A%0ACatégorie%20:%20{{ $offre->categorie }}
                                                 {{-- commentaire de retour à la ligne --}}
-                                                %0DClasse%20:%20{{ $offre->classe }}
+                                                %0A%0AClasse%20:%20{{ $offre->classe }}
                                                 {{-- commentaire de retour à la ligne --}}
-                                                %0DConditionnement%20:%20{{ $offre->conditionnement }}
+                                                %0A%0AConditionnement%20:%20{{ $offre->conditionnement }}
                                                 {{-- commentaire de retour à la ligne --}}
-                                                %0DOrigine du Produit%20:%20{{ $offre->origine }}
+                                                %0A%0AOrigine du Produit%20:%20{{ $offre->origine }}
                                                 {{-- commentaire de retour à la ligne --}}
-                                                %0DQuantité Disponible%20:%20{{ $offre->quantite }}
+                                                %0A%0AQuantité Disponible%20:%20{{ $offre->quantite }}
                                                 {{-- commentaire de retour à la ligne --}}
-                                                %0DLogistique%20:%20{{ $offre->logistique }}
+                                                %0A%0ALogistique%20:%20{{ $offre->logistique }}
                                                 {{-- commentaire de retour à la ligne --}}
-                                                %0D*Veuillez mentionner la quantité désirée*%20:%20"
-                                class="btn btn-primary" style="width: 100px;"><span
-                                    class="ftco-animate icon-whatsapp"></span></a></p>
+                                                %0A%0A*Veuillez mentionner la quantité désirée*%20:%20"
+                                class="btn btn-primary" style="width: 100%;"><span class="ftco-animate icon-whatsapp"
+                                    style="width: 500px;"></span></a></p>
                         <br>
                         <p><a href="{{ url('/AfficherOffre') }}" style="width: 150px;">&lt; Retour</a></p>
                     </div>

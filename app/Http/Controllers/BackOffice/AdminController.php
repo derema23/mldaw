@@ -6,13 +6,27 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Str;
+use App\Models\Offre;
 
 class AdminController extends Controller
 {
 
     public function dashboard()
     {
-        return view('Back.dashboard');
+        $users = User::all();
+        $offres = Offre::all();
+
+        $userProducteur = User::where('role', '=', 'Producteur')->get();
+        $userVendeur = User::where('role', '=', 'Vendeur')->get();
+        return view(
+            'Back.dashboard',
+            [
+                'users' => $users,
+                'offres' => $offres,
+                'userProducteur' => $userProducteur,
+                'userVendeur' => $userVendeur
+            ]
+        );
     }
 
     public function AddAdmin(Request $request)
@@ -39,5 +53,11 @@ class AdminController extends Controller
         $user->save();
 
         return redirect('/register')->with('status', 'Compte Administrateur ajouté avec succès !');
+    }
+
+    public function listUser()
+    {
+        $users = User::all();
+        return view('Back.admin.listUser')->with('users', $users);
     }
 }

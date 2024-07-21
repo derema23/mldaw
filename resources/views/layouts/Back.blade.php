@@ -76,6 +76,10 @@
                             <div class="profile-name">
                                 <h5 class="mb-0 font-weight-normal">{{ Auth::user()->Nom }}</h5>
                                 <span>{{ Auth::user()->role }}</span>
+                                @if (auth()->user()->role == 'Producteur')
+                                    <i class="fa fa-check-circle-o"
+                                        style="color: skyblue; font-size: 15px"></i><span><small>certifié</small></span>
+                                @endif
                             </div>
                         </div>
                         <a href="#" id="profile-dropdown" data-bs-toggle="dropdown"><i
@@ -132,17 +136,15 @@
                         </a>
                         <div class="collapse" id="ui-basic">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="#">Liste
+                                <li class="nav-item"> <a class="nav-link" href="{{ url('/listUser') }}">Liste
                                         Utilisateurs</a>
                                 </li>
-                                <li class="nav-item"> <a class="nav-link" href="#">Ajout
-                                        Admin</a></li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item menu-items">
                         <a class="nav-link" data-bs-toggle="collapse" href="#proui-basic" aria-expanded="false"
-                            aria-controls="ui-basic">
+                            aria-controls="proui-basic">
                             <span class="menu-icon">
                                 <i class="fa fa-group"></i>
                             </span>
@@ -161,7 +163,7 @@
                     </li>
                     <li class="nav-item menu-items">
                         <a class="nav-link" data-bs-toggle="collapse" href="#offreui-basic" aria-expanded="false"
-                            aria-controls="ui-basic">
+                            aria-controls="offreui-basic">
                             <span class="menu-icon">
                                 <i class="mdi mdi-laptop"></i>
                             </span>
@@ -170,10 +172,13 @@
                         </a>
                         <div class="collapse" id="offreui-basic">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="#">Mes Offres</a>
+                                <li class="nav-item"> <a class="nav-link"
+                                        href="{{ url('/MesOffres/' . auth()->user()->id) }}">Mes Offres</a>
                                 </li>
                                 <li class="nav-item"> <a class="nav-link" href="{{ url('/AjouterOffre') }}">Ajouter
                                         Offre</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="{{ url('/listOffre') }}">Liste
+                                        Offres</a></li>
                             </ul>
                         </div>
                     </li>
@@ -188,6 +193,17 @@
                     </li>
                 @else
                     <li class="nav-item menu-items">
+                        <a class="nav-link" href="#">
+                            <span class="menu-icon">
+                                <i class="mdi mdi-speedometer"></i>
+                            </span>
+                            <span class="menu-title">Tableau de bord</span>
+                        </a>
+                    </li>
+                    <li class="nav-item nav-category">
+                        <span class="nav-link">Gestion</span>
+                    </li>
+                    <li class="nav-item menu-items">
                         <a class="nav-link" data-bs-toggle="collapse" href="#offreui-basic" aria-expanded="false"
                             aria-controls="ui-basic">
                             <span class="menu-icon">
@@ -198,7 +214,8 @@
                         </a>
                         <div class="collapse" id="offreui-basic">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="#">Mes Offres</a>
+                                <li class="nav-item"> <a class="nav-link"
+                                        href="{{ url('/MesOffres/' . Auth::user()->id) }}">Mes Offres</a>
                                 </li>
                                 <li class="nav-item"> <a class="nav-link" href="{{ url('/AjouterOffre') }}">Ajouter
                                         Offre</a></li>
@@ -223,13 +240,6 @@
                         data-toggle="minimize">
                         <span class="mdi mdi-menu"></span>
                     </button>
-                    <ul class="navbar-nav w-100">
-                        <li class="nav-item w-100">
-                            <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                                <input type="text" class="form-control" placeholder="Rechercher un Produit...">
-                            </form>
-                        </li>
-                    </ul>
                     <ul class="navbar-nav navbar-nav-right">
                         <li class="nav-item dropdown d-none d-lg-block">
                             <a class="nav-link btn btn-success create-new-button" id="createbuttonDropdown"
@@ -274,107 +284,7 @@
                                 <p class="p-3 mb-0 text-center">See all projects</p>
                             </div>
                         </li>
-                        <li class="nav-item nav-settings d-none d-lg-block">
-                            <a class="nav-link" href="#">
-                                <i class="mdi mdi-view-grid"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item dropdown border-left">
-                            <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="mdi mdi-email"></i>
-                                <span class="count bg-success"></span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end navbar-dropdown preview-list"
-                                aria-labelledby="messageDropdown">
-                                <h6 class="p-3 mb-0">Messages</h6>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item preview-item">
-                                    <div class="preview-thumbnail">
-                                        <img src="Templates/back/assets/images/faces/face4.jpg" alt="image"
-                                            class="rounded-circle profile-pic">
-                                    </div>
-                                    <div class="preview-item-content">
-                                        <p class="preview-subject ellipsis mb-1">Mark send you a message</p>
-                                        <p class="text-muted mb-0"> 1 Minutes ago </p>
-                                    </div>
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item preview-item">
-                                    <div class="preview-thumbnail">
-                                        <img src="Templates/back/assets/images/faces/face2.jpg" alt="image"
-                                            class="rounded-circle profile-pic">
-                                    </div>
-                                    <div class="preview-item-content">
-                                        <p class="preview-subject ellipsis mb-1">Cregh send you a message</p>
-                                        <p class="text-muted mb-0"> 15 Minutes ago </p>
-                                    </div>
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item preview-item">
-                                    <div class="preview-thumbnail">
-                                        <img src="Templates/back/assets/images/faces/face3.jpg" alt="image"
-                                            class="rounded-circle profile-pic">
-                                    </div>
-                                    <div class="preview-item-content">
-                                        <p class="preview-subject ellipsis mb-1">Profile picture updated</p>
-                                        <p class="text-muted mb-0"> 18 Minutes ago </p>
-                                    </div>
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <p class="p-3 mb-0 text-center">4 new messages</p>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown border-left">
-                            <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown"
-                                href="#" data-bs-toggle="dropdown">
-                                <i class="mdi mdi-bell"></i>
-                                <span class="count bg-danger"></span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end navbar-dropdown preview-list"
-                                aria-labelledby="notificationDropdown">
-                                <h6 class="p-3 mb-0">Notifications</h6>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item preview-item">
-                                    <div class="preview-thumbnail">
-                                        <div class="preview-icon bg-dark rounded-circle">
-                                            <i class="mdi mdi-calendar text-success"></i>
-                                        </div>
-                                    </div>
-                                    <div class="preview-item-content">
-                                        <p class="preview-subject mb-1">Event today</p>
-                                        <p class="text-muted ellipsis mb-0"> Just a reminder that you have an event
-                                            today </p>
-                                    </div>
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item preview-item">
-                                    <div class="preview-thumbnail">
-                                        <div class="preview-icon bg-dark rounded-circle">
-                                            <i class="mdi mdi-cog text-danger"></i>
-                                        </div>
-                                    </div>
-                                    <div class="preview-item-content">
-                                        <p class="preview-subject mb-1">Settings</p>
-                                        <p class="text-muted ellipsis mb-0"> Update dashboard </p>
-                                    </div>
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item preview-item">
-                                    <div class="preview-thumbnail">
-                                        <div class="preview-icon bg-dark rounded-circle">
-                                            <i class="mdi mdi-link-variant text-warning"></i>
-                                        </div>
-                                    </div>
-                                    <div class="preview-item-content">
-                                        <p class="preview-subject mb-1">Launch Admin</p>
-                                        <p class="text-muted ellipsis mb-0"> New admin wow! </p>
-                                    </div>
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <p class="p-3 mb-0 text-center">See all notifications</p>
-                            </div>
-                        </li>
+
                         <li class="nav-item dropdown">
                             <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown">
                                 <div class="navbar-profile">
@@ -470,7 +380,7 @@
                 <footer class="footer">
                     <div class="d-sm-flex justify-content-center justify-content-sm-between">
                         <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024 <a
-                                href="#">M'LDAW</a>. All rights
+                                href="#">M'LYDAW</a>. All rights
                             reserved.</span>
                         <span class="text-muted float-none float-sm-end d-block mt-1 mt-sm-0 text-center"> <span
                                 class="text-muted float-none float-sm-end d-block mt-1 mt-sm-0 text-center">Made by
@@ -506,6 +416,21 @@
     <script src="{{ asset('Templates/back/assets/js/dashboard.js') }}"></script>
     <script src="{{ asset('Templates/back/assets/js/file-upload.js') }}"></script>
     <!-- End custom js for this page -->
+
+    <!-- Lien js pour bootbox confirmation suppression-->
+    <script src="{{ asset('js/Js_suppression/bootbox.min.js') }}"></script>
+    <!-- Script pour confirmer suppression -->
+    <script>
+        $(document).on("click", "#delete", function(e) {
+            e.preventDefault();
+            var link = $(this).attr("href");
+            bootbox.confirm("La sélection va être supprimé", function(confirmed) {
+                if (confirmed) {
+                    window.location.href = link;
+                };
+            });
+        });
+    </script>
 </body>
 
 </html>

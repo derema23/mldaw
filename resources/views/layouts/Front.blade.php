@@ -13,6 +13,10 @@
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
 
+    <!-- plugins:css  Pour icone certifié-->
+    <link rel="stylesheet" href="{{ asset('Templates/back/assets/vendors/font-awesome/css/font-awesome.min.css') }}">
+    <!-- endinject -->
+
     <link rel="stylesheet" href="{{ asset('Templates/front/css/open-iconic-bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('Templates/front/css/animate.css') }}">
 
@@ -56,23 +60,22 @@
                         <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">Asitsala</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown04">
-                            <a class="dropdown-item" href="shop.html">MarketPlace</a>
-                            <a class="dropdown-item" href="#">Wishlist</a>
-                            <a class="dropdown-item" href="#">Panier</a>
-                            <a class="dropdown-item" href="#">Checkout</a>
+                            <a class="dropdown-item" href="{{ url('/AfficherOffre') }}">MarketPlace</a>
+                            <a class="dropdown-item" href="{{ url('/panier') }}">Votre Panier</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="dropdown0ffre" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">Offres</a>
-                        <div class="dropdown-menu" aria-labelledby="dropdown0ffre">
-                            <a class="dropdown-item" href="{{ url('/AfficherOffre') }}">Liste Offres</a>
+                        <div class="dropdown-menu" id="drop2" aria-labelledby="dropdown0ffre">
+                            <a class="dropdown-item" href="{{ url('/AfficherOffre') }}">Nos Offres</a>
                             <a class="dropdown-item" href="{{ url('/AjouterOffre') }}">Ajouter Offre de vente</a>
                         </div>
                     </li>
                     <li class="nav-item"><a href="{{ url('/About') }}" class="nav-link">A propos</a></li>
-                    <li class="nav-item cta cta-colored"><a href="#" class="nav-link"><span
-                                class="icon-shopping_cart"></span>[0]</a></li>
+                    <li class="nav-item cta cta-colored"><a href="{{ url('/panier') }}" class="nav-link"><span
+                                class="icon-shopping_cart"></span>[{{ Session::has('cart') ? count(Session::get('cart')->items) : 0 }}]</a>
+                    </li>
                     <li class="nav-item"><a href="{{ '/login' }}" class="nav-link"><span
                                 id="btn-login">Connexion</span></a>
                     </li>
@@ -101,12 +104,13 @@
             <div class="row mb-5">
                 <div class="col-md">
                     <div class="ftco-footer-widget mb-4">
-                        <h2 class="ftco-heading-2">M'ldaw</h2>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+                        <h2 class="ftco-heading-2">M'lydaw</h2>
+                        <p>La passion de la grandeur !!!</p>
                         <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
-                            <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                            {{-- <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li> --}}
+                            <li class="ftco-animate"><a href="#"><span class="icon-whatsapp"></span></a></li>
+                            {{-- <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                            <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li> --}}
                         </ul>
                     </div>
                 </div>
@@ -114,13 +118,12 @@
                     <div class="ftco-footer-widget mb-4 ml-md-5">
                         <h2 class="ftco-heading-2">Menu</h2>
                         <ul class="list-unstyled">
-                            <li><a href="#" class="py-2 d-block">MarketPlace</a></li>
-                            <li><a href="#" class="py-2 d-block">A Propos</a></li>
-                            <li><a href="#" class="py-2 d-block">Nous Contacter</a></li>
+                            <li><a href="{{ url('/AfficherOffre') }}" class="py-2 d-block">MarketPlace</a></li>
+                            <li><a href="{{ url('/About') }}" class="py-2 d-block">A Propos</a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-4">
+                {{-- <div class="col-md-4">
                     <div class="ftco-footer-widget mb-4">
                         <h2 class="ftco-heading-2">Help</h2>
                         <div class="d-flex">
@@ -136,18 +139,19 @@
                             </ul>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <div class="col-md">
                     <div class="ftco-footer-widget mb-4">
                         <h2 class="ftco-heading-2">Vous avez des Questions ?</h2>
-                        <div class="block-23 mb-3">
+                        <div class="block-23 mb-3" id="contact">
                             <ul>
-                                <li><span class="icon icon-map-marker"></span><span class="text">BP xx, Lomé -
+                                <li><span class="icon icon-map-marker"></span><span class="text">Zanguéra, Lomé -
                                         Togo</span></li>
                                 <li><a href="#"><span class="icon icon-phone"></span><span class="text">+228
-                                            xx xx xx xx</span></a></li>
-                                <li><a href="#"><span class="icon icon-envelope"></span><span
-                                            class="text">info@email.com</span></a></li>
+                                            93 27 30 29</span></a></li>
+                                <li><a href="#"><span class="icon icon-envelope"></span><span class="text"
+                                            style="padding-left: 10px;">
+                                            mlydawcontact@gmail.com</span></a></li>
                             </ul>
                         </div>
                     </div>
@@ -160,7 +164,7 @@
                         Copyright &copy;
                         <script>
                             document.write(new Date().getFullYear());
-                        </script> All rights reserved | M'ldaw Made by <a href="#"
+                        </script> All rights reserved | M'lydaw Made by <a href="#"
                             target="_blank">Derwin23</a>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </p>

@@ -13,3 +13,23 @@
 
 a
 { cursor: pointer;}
+
+
+/*Media screen*/
+@media screen and (max-width: 768px) {
+
+    #ficheProduit{
+        padding-top: 15%;
+    }
+   }
+@media screen and (max-width: 767px) {
+
+    #volailesimg{
+        margin-top:  15px;;
+    }
+    #voir{
+        margin-bottom: 15px;
+    }
+   }
+
+

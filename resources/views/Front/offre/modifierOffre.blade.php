@@ -34,24 +34,31 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Formulaire</h4>
-                <p class="card-description"> Ajouter une Offre</p>
-                <form class="forms-sample" method="POST" action="{{ url('AddOffre') }}" enctype="multipart/form-data">
+                <p class="card-description"> Modifier une Offre</p>
+                <form class="forms-sample" method="POST" action="{{ url('editOffre') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group" hidden>
-                        <label for="Iduser">Id user</label> <strong style="color: red; size:50px;">*</strong>
+                        <label for="Iduser">Id user</label>
                         <input type="text" class="form-control" id="Iduser" name="id_user"
-                            value="{{ auth()->user()->id }}" required>
+                            value="{{ $offre->user->id }}" required>
+                    </div>
+                    <div class="form-group" hidden>
+                        <label for="IdOffre">Id Offre</label>
+                        <input type="text" class="form-control" id="IdOffre" name="IdOffre" value="{{ $offre->id }}"
+                            required>
                     </div>
                     <div class="form-group">
                         <label for="nom">Nom Produit</label> <strong style="color: red; size:50px;">*</strong>
                         <input type="text" class="form-control" id="nom" name="nom"
-                            placeholder="Nom du produit" required>
+                            placeholder="Nom du produit" value="{{ $offre->Nom_produit }}" required>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="categorie">Catégorie</label> <strong style="color: red; size:50px;">*</strong>
                             <select class="form-select" id="categorie" name="categorie" required>
-                                <option value="Agro-alimentaires" selected>Agro-alimentaires</option>
+                                <option value="{{ $offre->categorie }}" selected>{{ $offre->categorie }}</option>
+                                <option disabled>----------------------</option>
+                                <option value="Agro-alimentaires">Agro-alimentaires</option>
                                 <option value="Élevages">Élevages</option>
                                 <option value="Matériels Agricoles">Matériels Agricoles</option>
                             </select>
@@ -59,7 +66,9 @@
                         <div class="form-group col-md-6"> <strong style="color: red; size:50px;">*</strong>
                             <label for="classe">Classe</label>
                             <select class="form-select" id="classe" name="classe" required>
-                                <option value="Produits Bio" selected>Produits Bio</option>
+                                <option value="{{ $offre->classe }}" selected>{{ $offre->classe }}</option>
+                                <option disabled>------------------</option>
+                                <option value="Produits Bio">Produits Bio</option>
                                 <option value="Produits Conventionnels">Produits Conventionnels</option>
                             </select>
                         </div>
@@ -69,12 +78,12 @@
                             <label for="Conditionnement">Conditionnement</label> <strong
                                 style="color: red; size:50px;">*</strong>
                             <input name="conditionnement" type="text" class="form-control" id="Conditionnement"
-                                placeholder="veillez remplir ce champ.." required>
+                                placeholder="veillez remplir ce champ.." value="{{ $offre->conditionnement }}" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="origine">Origine</label> <strong style="color: red; size:50px;">*</strong>
                             <input name="origine" type="text" class="form-control" id="origine"
-                                placeholder="veillez remplir ce champ.." required>
+                                placeholder="veillez remplir ce champ.." value="{{ $offre->origine }}" required>
                         </div>
                     </div>
 
@@ -82,7 +91,9 @@
                         <div class="form-group col-md-6">
                             <label for="unite">Unité de vente</label> <strong style="color: red; size:50px;">*</strong>
                             <select class="form-select" id="unite" name="unite" required>
-                                <option value="Kg" selected>Kilogramme(Kg)</option>
+                                <option value="{{ $offre->unite_vente }}" selected>{{ $offre->unite_vente }}</option>
+                                <option disabled>----------------</option>
+                                <option value="Kg">Kilogramme(Kg)</option>
                                 <option value="Bol">Bol</option>
                                 <option value="Panier">Panier</option>
                                 <option value="Litre">Litre(l)</option>
@@ -93,7 +104,7 @@
                                 CFA)
                             </strong>
                             <input name="prix" type="number" class="form-control" id="prix"
-                                placeholder="veillez remplir ce champ.." required>
+                                placeholder="veillez remplir ce champ.." value="{{ $offre->prix_unitaire }}" required>
                         </div>
                     </div>
                     <div class="row">
@@ -101,12 +112,14 @@
                             <label for="quantite">Quantité disponible</label> <strong
                                 style="color: red; font-size:15px;">*(nombre d'unité de Vente)</strong>
                             <input name="quantite" type="number" class="form-control" id="quantite"
-                                placeholder="veillez remplir ce champ.." required>
+                                placeholder="veillez remplir ce champ.." value="{{ $offre->quantite }}" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="logistique">Logistique</label> <strong style="color: red; size:50px;">*</strong>
                             <select class="form-select" id="logistique" name="logistique" required>
-                                <option value="EXW" selected>EXW</option>
+                                <option value="{{ $offre->logistique }}" selected>{{ $offre->logistique }}</option>
+                                <option disabled>----------</option>
+                                <option value="EXW">EXW</option>
                                 <option value="FCA">FCA</option>
                                 <option value="FAS">FAS</option>
                                 <option value="FOB">FOB</option>
@@ -132,7 +145,6 @@
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary me-2">Enregistrer</button>
-                    <button type="reset" class="btn btn-dark">Annuler</button>
                 </form>
             </div>
         </div>

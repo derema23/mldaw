@@ -11,8 +11,7 @@
 
                         <div class="col-md-12 ftco-animate text-center">
                             <h1 class="mb-2">Accompagnement de la production à la vente</h1>
-                            <h2 class="subheading mb-4">We deliver organic vegetables &amp; fruits</h2>
-                            <p><a href="#" class="btn btn-primary">Plus de Details</a></p>
+                            <p><a href="{{ url('/About') }}" class="btn btn-primary">Plus de Details</a></p>
                         </div>
 
                     </div>
@@ -27,7 +26,7 @@
                         <div class="col-sm-12 ftco-animate text-center">
                             <h1 class="mb-2">Produits 100% bio &amp; conventionnels </h1>
                             {{-- <h2 class="subheading mb-4">We deliver organic vegetables &amp; fruits</h2> --}}
-                            <p><a href="#" class="btn btn-primary">Plus de Details</a></p>
+                            <p><a href="{{ url('/About') }}" class="btn btn-primary">Plus de Details</a></p>
                         </div>
 
                     </div>
@@ -42,7 +41,7 @@
                         <div class="col-sm-12 ftco-animate text-center">
                             <h1 class="mb-2">MarketPlace pour Vos Offres</h1>
                             <h2 class="subheading mb-4">Offre de Vente &amp; d'Achat</h2>
-                            <p><a href="#" class="btn btn-primary">Plus de Details</a></p>
+                            <p><a href="{{ url('/About') }}" class="btn btn-primary">Plus de Details</a></p>
                         </div>
 
                     </div>
@@ -107,27 +106,27 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="row">
-                        <div class="col-md-6 order-md-last align-items-stretch d-flex">
+                        <div class="col-md-6 order-md-last align-items-stretch d-flex" id="voir">
                             <div class="category-wrap-2 ftco-animate img align-self-stretch d-flex"
                                 style="background-image: url(Templates/front/images/category.jpg);">
-                                <div class="text text-center">
+                                <div class="text text-center" style="color: #333;font-weight: bold;">
                                     <h2>Produits Bio &amp; Conventionnels</h2>
-                                    <p>Nous préservons votre Santé de part la qualté de nos Produits</p>
-                                    <p><a href="#" class="btn btn-primary">Commander</a></p>
+                                    <p>Nous préservons votre Santé de part la qualité de nos Produits</p>
+                                    <p><a href="{{ url('/AfficherOffre') }}" class="btn btn-primary">Voir Nos Offres</a></p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="category-wrap ftco-animate img mb-4 d-flex align-items-end"
-                                style="background-image: url(Templates/front/images/category-1.jpg);">
+                                style="background-image: url(Templates/front/images/tof4.jpg);">
                                 <div class="text px-3 py-1">
                                     <h2 class="mb-0"><a href="#">Fruits</a></h2>
                                 </div>
                             </div>
                             <div class="category-wrap ftco-animate img d-flex align-items-end"
-                                style="background-image: url(Templates/front/images/category-2.jpg);">
+                                style="background-image: url(Templates/front/images/tof1.jpg);">
                                 <div class="text px-3 py-1">
-                                    <h2 class="mb-0"><a href="#">Vegetables</a></h2>
+                                    <h2 class="mb-0"><a href="#">Légumes</a></h2>
                                 </div>
                             </div>
                         </div>
@@ -136,15 +135,15 @@
 
                 <div class="col-md-4">
                     <div class="category-wrap ftco-animate img mb-4 d-flex align-items-end"
-                        style="background-image: url(Templates/front/images/category-3.jpg);">
+                        style="background-image: url(Templates/front/images/tof2.jpg);" id="volailesimg">
                         <div class="text px-3 py-1">
-                            <h2 class="mb-0"><a href="#">Juices</a></h2>
+                            <h2 class="mb-0"><a href="#">Volailes</a></h2>
                         </div>
                     </div>
                     <div class="category-wrap ftco-animate img d-flex align-items-end"
-                        style="background-image: url(Templates/front/images/category-4.jpg);">
+                        style="background-image: url(Templates/front/images/tof3.jpg);">
                         <div class="text px-3 py-1">
-                            <h2 class="mb-0"><a href="#">Dried</a></h2>
+                            <h2 class="mb-0"><a href="#">Graines</a></h2>
                         </div>
                     </div>
                 </div>
@@ -162,8 +161,75 @@
                 </div>
             </div>
         </div>
+
+        @if (Session::has('status'))
+            <div class="alert alert-success">
+
+                <div class="message" style="max-width: 350px;margin: 0 auto;">{{ Session::get('status') }}</div>
+
+            </div>
+            <br>
+        @endif
+        @if (Session::has('error'))
+            <div class="alert alert-danger">
+
+                <div class="message" style="max-width: 350px;margin: 0 auto;">{{ Session::get('error') }}</div>
+
+            </div>
+            <br>
+        @endif
+
         <div class="container">
+
             <div class="row">
+
+                @if (count($offres) > 0)
+                    @foreach ($offres as $offre)
+                        <div class="col-md-6 col-lg-3 ftco-animate">
+                            <div class="product">
+                                <a href="{{ url('/details/' . $offre->id) }}" class="img-prod"><img class="img-fluid"
+                                        src="storage/photo_offres/{{ $offre->image }}" alt="Colorlib Template">
+                                    {{-- <span class="status">30%</span> --}}
+                                    <div class="overlay"></div>
+                                </a>
+                                <div class="text py-3 pb-4 px-3 text-center">
+                                    <h3><a href="#">{{ $offre->Nom_produit }}</a></h3>
+                                    <div class="d-flex">
+                                        <div class="pricing">
+                                            <p class="price"><span
+                                                    class="price-sale">{{ number_format($offre->prix_unitaire, 0, ',', ' ') }}
+                                                    F CFA / {{ $offre->unite_vente }}</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="bottom-area d-flex px-3">
+                                        <div class="m-auto d-flex">
+                                            <a href="{{ url('/details/' . $offre->id) }}"
+                                                class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                                                <span><i class="ion-ios-menu"></i></span>
+                                            </a>
+                                            <a href="{{ url('/ajout_panier/' . $offre->id) }}"
+                                                class="buy-now d-flex justify-content-center align-items-center mx-1">
+                                                <span><i class="ion-ios-cart"></i></span>
+                                            </a>
+                                            {{-- <a href="#"
+                                                    class="heart d-flex justify-content-center align-items-center ">
+                                                    <span><i class="ion-ios-heart"></i></span>
+                                                </a> --}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                @else
+                    <p style="text-align: center;">
+                    <h2>Pas d'offre(s) disponibles...</h2>
+                    </p>
+                @endif
+
+            </div>
+
+            {{-- <div class="row">
                 <div class="col-md-6 col-lg-3 ftco-animate">
                     <div class="product">
                         <a href="#" class="img-prod"><img class="img-fluid"
@@ -290,7 +356,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </section>
 
@@ -339,40 +405,8 @@
                                 <div class="text text-center">
                                     <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the
                                         countries Vokalia and Consonantia, there live the blind texts.</p>
-                                    <p class="name">Garreth Smith</p>
-                                    <span class="position">Marketing Manager</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="testimony-wrap p-4 pb-5">
-                                <div class="user-img mb-5"
-                                    style="background-image: url(Templates/front/images/person_2.jpg)">
-                                    <span class="quote d-flex align-items-center justify-content-center">
-                                        <i class="icon-quote-left"></i>
-                                    </span>
-                                </div>
-                                <div class="text text-center">
-                                    <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the
-                                        countries Vokalia and Consonantia, there live the blind texts.</p>
-                                    <p class="name">Garreth Smith</p>
-                                    <span class="position">Interface Designer</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="testimony-wrap p-4 pb-5">
-                                <div class="user-img mb-5"
-                                    style="background-image: url(Templates/front/images/person_3.jpg)">
-                                    <span class="quote d-flex align-items-center justify-content-center">
-                                        <i class="icon-quote-left"></i>
-                                    </span>
-                                </div>
-                                <div class="text text-center">
-                                    <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the
-                                        countries Vokalia and Consonantia, there live the blind texts.</p>
-                                    <p class="name">Garreth Smith</p>
-                                    <span class="position">UI Designer</span>
+                                    {{-- <p class="name">Garreth Smith</p> --}}
+                                    <span class="position">Client</span>
                                 </div>
                             </div>
                         </div>
@@ -387,8 +421,8 @@
                                 <div class="text text-center">
                                     <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the
                                         countries Vokalia and Consonantia, there live the blind texts.</p>
-                                    <p class="name">Garreth Smith</p>
-                                    <span class="position">Web Developer</span>
+                                    {{-- <p class="name">Garreth SmithSon</p> --}}
+                                    <span class="position">Producteur</span>
                                 </div>
                             </div>
                         </div>
@@ -403,8 +437,8 @@
                                 <div class="text text-center">
                                     <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the
                                         countries Vokalia and Consonantia, there live the blind texts.</p>
-                                    <p class="name">Garreth Smith</p>
-                                    <span class="position">System Analyst</span>
+                                    {{-- <p class="name">Garreth Smith</p> --}}
+                                    <span class="position">Producteur</span>
                                 </div>
                             </div>
                         </div>
@@ -414,9 +448,11 @@
         </div>
     </section>
 
-    <hr>
 
-    <section class="ftco-section ftco-partner">
+
+    {{-- section partenaire --}}
+    {{-- <hr> --}}
+    {{-- <section class="ftco-section ftco-partner">
         <div class="container">
             <div class="row">
                 <div class="col-sm ftco-animate">
@@ -441,9 +477,11 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
-    <section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
+    {{-- fin section partenaire --}}
+
+    {{-- <section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
         <div class="container py-4">
             <div class="row d-flex justify-content-center py-5">
                 <div class="col-md-6">
@@ -460,5 +498,5 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 @endsection

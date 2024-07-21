@@ -46,7 +46,7 @@
         </div>
     </section>
 
-    <section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
+    {{-- <section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
         <div class="container py-4">
             <div class="row d-flex justify-content-center py-5">
                 <div class="col-md-6">
@@ -63,7 +63,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <section class="ftco-section testimony-section">
         <div class="container">
@@ -86,10 +86,9 @@
                                     </span>
                                 </div>
                                 <div class="text text-center">
-                                    <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the
-                                        countries Vokalia and Consonantia, there live the blind texts.</p>
-                                    <p class="name">xxxx xxxxx</p>
-                                    <span class="position">Marketing Manager</span>
+                                    <p class="mb-5 pl-4 line">Far </p>
+                                    <p class="name">KEKEH Komi</p>
+                                    <span class="position">Manageur Principal</span>
                                 </div>
                             </div>
                         </div>
@@ -102,10 +101,9 @@
                                     </span>
                                 </div>
                                 <div class="text text-center">
-                                    <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the
-                                        countries Vokalia and Consonantia, there live the blind texts.</p>
-                                    <p class="name">xxxx xxxxx</p>
-                                    <span class="position">Interface Designer</span>
+                                    <p class="mb-5 pl-4 line">Far</p>
+                                    <p class="name">ABOETSI Komla Mawuena</p>
+                                    <span class="position">Technicien Agricole</span>
                                 </div>
                             </div>
                         </div>
@@ -118,10 +116,9 @@
                                     </span>
                                 </div>
                                 <div class="text text-center">
-                                    <p class="mb-5 pl-4 line">Far far away, behind the word mountains, far from the
-                                        countries Vokalia and Consonantia, there live the blind texts.</p>
-                                    <p class="name">xxxx xxxxx</p>
-                                    <span class="position">IT Project Manager</span>
+                                    <p class="mb-5 pl-4 line">Far</p>
+                                    <p class="name">BOKO Déréma Godwin</p>
+                                    <span class="position">Responsable SI</span>
                                 </div>
                             </div>
                         </div>

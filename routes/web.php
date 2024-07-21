@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Offre;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,8 @@ Route::get('/symlink', function () {
 });
 
 Route::get('/', function () {
-    return view('Front.accueil');
+    $offres = Offre::orderByDesc('id')->limit(4)->get();
+    return view('Front.accueil')->with('offres', $offres);
 });
 
 Auth::routes();
@@ -62,10 +64,21 @@ Route::group(["namespace" => "App\Http\Controllers\BackOffice"], function () {
         "as" => "list-offre",
         "uses" => "OffreController@AfficherOffre"
     ]);
-
+    Route::match(['get', 'post'], "/OffreCategorie/{categorie}", [
+        "as" => "tri-offre",
+        "uses" => "OffreController@rechOffreCategorie"
+    ]);
+    Route::match(['get', 'post'], "/OffreClasse/{classe}", [
+        "as" => "tri-offre",
+        "uses" => "OffreController@rechOffreClasse"
+    ]);
     Route::match(['get', 'post'], "/ZapLink/{id}", [
         "as" => "achat-whatsapp",
         "uses" => "OffreController@AchatWhatsapp"
+    ]);
+    Route::match(['get', 'post'], "RechOffre", [
+        "as" => "recherche-offre",
+        "uses" => "OffreController@RechOffre"
     ]);
 });
 
@@ -78,7 +91,10 @@ Route::middleware(['auth'])->group(function () {
             "as" => "dashboard",
             "uses" => "AdminController@dashboard"
         ]);
-
+        Route::match(['get', 'post'], "/listUser", [
+            "as" => "liste-Utilisateur",
+            "uses" => "AdminController@listUser"
+        ]);
         Route::match(['get', 'post'], "/ajouterPro", [
             "as" => "ajout-producteur",
             "uses" => "ProducteurController@ajouterPro"
@@ -99,6 +115,34 @@ Route::middleware(['auth'])->group(function () {
         Route::match(['get', 'post'], "/AjouterOffre", [
             "as" => "ajouter-offre",
             "uses" => "OffreController@AjouterOffre"
+        ]);
+        Route::match(['get', 'post'], "/ModifierOffre/{id}", [
+            "as" => "modifier-offre",
+            "uses" => "OffreController@modifierOffre"
+        ]);
+        Route::match(['get', 'post'], "editOffre", [
+            "as" => "edit-offre",
+            "uses" => "OffreController@editOffre"
+        ]);
+        Route::match(['get', 'post'], "/listOffre", [
+            "as" => "list-offre",
+            "uses" => "OffreController@listOffre"
+        ]);
+        Route::match(['get', 'post'], "/PlusInfosOffre/{id}", [
+            "as" => "plus-info-offre",
+            "uses" => "OffreController@PlusInfosOffre"
+        ]);
+        Route::match(['get', 'post'], "/SupprimerOffre/{id}", [
+            "as" => "delete-offre",
+            "uses" => "OffreController@SupprimerOffre"
+        ]);
+        Route::match(['get', 'post'], "/MesOffres/{id}", [
+            "as" => "mes-offres",
+            "uses" => "OffreController@MesOffres"
+        ]);
+        Route::match(['get', 'post'], "searchOffreback", [
+            "as" => "search-offre",
+            "uses" => "OffreController@SearchOffreback"
         ]);
     });
 });
@@ -126,5 +170,27 @@ Route::group(["namespace" => "App\Http\Controllers\FrontOffice"], function () {
     Route::match(['get', 'post'], "AddUser", [
         "as" => "add-user",
         "uses" => "VendeurController@AddUser"
+    ]);
+
+    // PARTIE PANIER
+    Route::match(['get', 'post'], "/ajout_panier/{id}", [
+        "as" => "add-panier",
+        "uses" => "PanierController@ajout_panier"
+    ]);
+    Route::match(['get', 'post'], "/panier", [
+        "as" => "Mon-panier",
+        "uses" => "PanierController@cart"
+    ]);
+    Route::match(['get', 'post'], "/supprimer_panier/{id}", [
+        "as" => "delete-from-panier",
+        "uses" => "PanierController@supprimer_panier"
+    ]);
+    Route::match(['get', 'post'], "/modifier_qty/{id}", [
+        "as" => "edit-qty-panier",
+        "uses" => "PanierController@modifier_qty"
+    ]);
+    Route::match(['get', 'post'], "/Commander", [
+        "as" => "commander-panier",
+        "uses" => "PanierController@Commander"
     ]);
 });

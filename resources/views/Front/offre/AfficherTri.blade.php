@@ -1,14 +1,13 @@
 @extends('layouts.Front')
 
 @section('content')
-    <div class="hero-wrap hero-bread" style="background-image: url('Templates/front/images/bg_1.jpg');">
+    <div class="hero-wrap hero-bread" style="background-image: url({{ asset('Templates/front/images/bg_1.jpg') }});">
         <div class="container">
             <div class="row no-gutters slider-text align-items-center justify-content-center">
                 <div class="col-md-9 ftco-animate text-center">
-                    <p class="breadcrumbs"><span class="mr-2"><a href="{{ url('/') }}">Accueil</a></span>/
-                        <span>Nos Offres</span>
+                    <p class="breadcrumbs"><span class="mr-2"><a href="{{ url('/AfficherOffre') }}">Accueil Shop</a></span>
                     </p>
-                    <h1 class="mb-0 bread">Offres Disponibles</h1>
+                    <h1 class="mb-0 bread">{{ $head }}</h1>
                 </div>
             </div>
         </div>
@@ -31,23 +30,6 @@
         </div>
     </section>
 
-    @if (Session::has('status'))
-        <div class="alert alert-success">
-
-            <div class="message" style="max-width: 350px;margin: 0 auto;">{{ Session::get('status') }}</div>
-
-        </div>
-        <br>
-    @endif
-    @if (Session::has('error'))
-        <div class="alert alert-danger">
-
-            <div class="message" style="max-width: 350px;margin: 0 auto;">{{ Session::get('error') }}</div>
-
-        </div>
-        <br>
-    @endif
-
     <section class="ftco-section">
         <div class="container">
             <div class="row justify-content-center">
@@ -61,25 +43,26 @@
                                 <a class="dropdown-item"
                                     href="{{ url('/OffreCategorie/Agro-alimentaires') }}">Agro-alimentaires</a>
                                 <a class="dropdown-item" href="{{ url('/OffreCategorie/Élevages') }}">Élevages</a>
-                                <a class="dropdown-item"
-                                    href="{{ url('/OffreCategorie/Matériels Agricoles') }}">Matériels</a>
+                                <a class="dropdown-item" href="{{ url('/OffreCategorie/Matériels Agricoles') }}">Matériels
+                                    Agricols</a>
                                 <a class="dropdown-item" aria-disabled="true">-- Classe(s) --</a>
-                                <a class="dropdown-item" href="{{ url('/OffreClasse/Produits Bio') }}">Bio</a>
-                                <a class="dropdown-item"
-                                    href="{{ url('/OffreClasse/Produits Conventionnels') }}">Conventionnels</a>
+                                <a class="dropdown-item" href="{{ url('/OffreClasse/Produits Bio') }}">Produits Bio</a>
+                                <a class="dropdown-item" href="{{ url('/OffreClasse/Produits Conventionnels') }}">Produits
+                                    Conventionnels</a>
                             </div>
                         </li>
-                        <li><a href="#" class="active">Tout</a></li>
+                        <li><a href="{{ url('/AfficherOffre') }}" class="active">Tout</a></li>
                     </ul>
                 </div>
             </div>
+
             <div class="row">
                 @if (count($offres) > 0)
                     @foreach ($offres as $offre)
                         <div class="col-md-4 col-lg-3 ftco-animate">
                             <div class="product">
                                 <a href="{{ url('/details/' . $offre->id) }}" class="img-prod"><img class="img-fluid"
-                                        src="storage/photo_offres/{{ $offre->image }}" alt="Colorlib Template">
+                                        src={{ asset('storage/photo_offres/' . $offre->image) }} alt="Colorlib Template">
                                     {{-- <span class="status">30%</span> --}}
                                     <div class="overlay"></div>
                                 </a>
@@ -98,7 +81,7 @@
                                                 class="add-to-cart d-flex justify-content-center align-items-center text-center">
                                                 <span><i class="ion-ios-menu"></i></span>
                                             </a>
-                                            <a href="{{ url('/ajout_panier/' . $offre->id) }}"
+                                            <a href="#"
                                                 class="buy-now d-flex justify-content-center align-items-center mx-1">
                                                 <span><i class="ion-ios-cart"></i></span>
                                             </a>
@@ -114,7 +97,7 @@
                     @endforeach
                 @else
                     <p>
-                    <h2 style="margin: 0 auto;">Pas d'offre(s) disponibles...</h2>
+                    <h2 style="margin: 0 auto;">Pas d'offre(s) disponible...</h2>
                     </p>
                 @endif
 
